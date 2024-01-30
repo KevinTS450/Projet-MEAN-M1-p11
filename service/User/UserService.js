@@ -1,10 +1,13 @@
 const database = require("../../database.js");
 
-async function getUserById(id) {
+async function getUserById(id, db) {
   try {
-    const query = "SELECT * FROM users WHERE id = $1";
-    const result = await database.pool.query(query, [id]);
-    return result.rows[0]; // Assuming you want to return the first matching user
+    const collection = db.collection("users"); // Assuming 'users' is your collection name
+
+    // Find the user by ID
+    const user = await collection.findOne({ _id: ObjectId(id) });
+
+    return user;
   } catch (error) {
     console.error("Error during database query:", error);
     throw error;

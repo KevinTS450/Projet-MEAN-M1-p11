@@ -2,16 +2,18 @@ const database = require("../../database.js");
 const bcrypt = require("bcrypt"); // For password hashing
 const jwt = require("jsonwebtoken");
 
-async function getUserByEmail(email) {
+async function getUserByEmail(email, db) {
   try {
-    const query = "SELECT * FROM users WHERE email = $1";
-    const result = await database.pool.query(query, [email]);
-    return result.rows[0]; // Assuming you want to return the first matching user
+    const collection = db.collection("users");
+    const user = await collection.findOne({ email: email });
+
+    return user;
   } catch (error) {
     console.error("Error during database query:", error);
     throw error;
   }
 }
+
 const handleAuthentication = async (email, password) => {
   const user = await getUserByEmail(email);
 

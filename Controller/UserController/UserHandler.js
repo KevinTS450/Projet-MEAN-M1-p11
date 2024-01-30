@@ -1,5 +1,5 @@
 const express = require("express");
-const UserService = require("../service/UserService.js");
+const UserService = require("../../service/User/UserService.js");
 
 const GetUserByToken = async (req, res) => {
   try {

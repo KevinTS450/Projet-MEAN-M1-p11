@@ -1,4 +1,4 @@
-const database = require("../database.js");
+const database = require("../../database.js");
 const bcrypt = require("bcrypt"); // For password hashing
 const jwt = require("jsonwebtoken");
 

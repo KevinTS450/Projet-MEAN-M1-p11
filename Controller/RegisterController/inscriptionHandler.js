@@ -1,6 +1,6 @@
 const express = require("express");
-const Inscription = require("../service/inscription.js");
-const User = require("../model/user");
+const Inscription = require("../../service/Register/inscription.js");
+const User = require("../../model/Users/user");
 
 async function handleUserRegistration(req, res, next) {
   try {

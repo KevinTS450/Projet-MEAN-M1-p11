@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const handlerInscription = require("../Controller/inscriptionHandler.js");
+const handlerInscription = require("../Controller/RegisterController/inscriptionHandler.js");
 const authenticateToken = require("../JWT/jwtMiddleware");
-const handlerLogin = require("../Controller/loginHandler");
-const HandlerUser = require("../Controller/UserHandler");
+const handlerLogin = require("../Controller/AuthController/loginHandler");
+const HandlerUser = require("../Controller/UserController/UserHandler");
 
 router.post("/inscription", handlerInscription);
 router.get("/get-user", authenticateToken, HandlerUser.GetUserByToken);

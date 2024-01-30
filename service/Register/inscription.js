@@ -1,6 +1,6 @@
-const database = require("../database.js");
+const database = require("../../database.js");
 const moment = require("moment");
-const utils = require("../utils/utils");
+const utils = require("../../utils/utils");
 const jwt = require("jsonwebtoken");
 
 async function registerUser(user) {

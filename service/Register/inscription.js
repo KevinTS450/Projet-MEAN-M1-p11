@@ -16,9 +16,9 @@ async function registerUser(user) {
 
     // Insert the user into the collection
     await collection.insertOne({
-      nom: user.nom,
-      prenom: user.prenom,
+      nom: user.username,
       email: user.email,
+      role: user.role,
       password: hashedPassword,
       date_naissance: user.date_naissance,
       age: age,

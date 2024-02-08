@@ -1,9 +1,15 @@
 class users {
-  constructor(nom, prenom, email, password, date_naissance, is_activate, age) {
-    this.nom = nom;
-    this.prenom = prenom;
+  constructor(username, email, password, role, date_naissance, is_activate, age) {
+    // this.nom = {name: name, firstname: firstname};
+    // this.email = email;
+    // this.password = password;
+    // this.date_naissance = date_naissance;
+    // this.is_activate = is_activate;
+    // this.age = age;
+    this.username = username;
     this.email = email;
     this.password = password;
+    this.role = role;
     this.date_naissance = date_naissance;
     this.is_activate = is_activate;
     this.age = age;

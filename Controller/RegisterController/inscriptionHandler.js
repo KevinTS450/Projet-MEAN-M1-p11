@@ -4,11 +4,11 @@ const User = require("../../model/Users/user");
 
 async function handleUserRegistration(req, res, next) {
   try {
-    const { nom, prenom, email, password, date_naissance, is_activate, age } =
+    const { username, role, email, password, date_naissance, is_activate, age } =
       req.body;
     const newUser = new User(
-      nom,
-      prenom,
+      username,
+      role,
       email,
       password,
       date_naissance,

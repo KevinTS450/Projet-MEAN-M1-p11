@@ -1,22 +1,18 @@
 const express = require("express");
-const NotificationService = require("../service/notification.service");
-const Notification = require('../model/notification.model')
+const MobileMoneyService = require("../service/mobileMoney.service");
+const MobileMoney = require('../model/mobileMoney.model')
 
-async function createNotification(req, res, next) {
+async function createMobileMoney(req, res, next) {
   try {
-    const { notification, remarque, temps, isSent, isRead, serviceConcerne, destinataire  } =
+    const { user, operateurNom, monnaie } =
       req.body;
-    const newNotification = new Notification(
-      notification,
-      remarque,
-      temps,
-      isSent,
-      isRead,
-      serviceConcerne,
-      destinataire
+    const newMobileMoney = new MobileMoney(
+      user,
+      operateurNom,
+      monnaie
     );
 
-    await NotificationService.createNotification(newNotification);
+    await MobileMoneyService.createMobileMoney(newMobileMoney);
 
     res.status(200).json({ message: "User registered successfully" });
   } catch (error) {
@@ -24,77 +20,73 @@ async function createNotification(req, res, next) {
   }
 }
 
-const GetNotificationById = async (req, res) => {
+const GetMobileMoneyById = async (req, res) => {
   try {
-    // Assuming there is a Notification model with findById method
-    console.log("Decoded Notification ID in Controller:", req.notification.id);
+    // Assuming there is a MobileMoney model with findById method
+    console.log("Decoded MobileMoney ID in Controller:", req.mobileMoney.id);
 
-    const notification = await NotificationService.getNotificationById(req.notification.id);
-    console.log("Notification Details:", notification);
+    const mobileMoney = await MobileMoneyService.getMobileMoneyById(req.mobileMoney.id);
+    console.log("MobileMoney Details:", mobileMoney);
 
-    if (!notification) {
-      return res.status(404).json({ message: "Notification not found" });
+    if (!mobileMoney) {
+      return res.status(404).json({ message: "MobileMoney not found" });
     }
 
-    res.json({ notification });
+    res.json({ mobileMoney });
   } catch (error) {
     console.error(error);
     +res.status(500).json({ message: "Internal server error" });
   }
 };
 
-const GetAllNotification = async (req, res) => {
+const GetAllMobileMoney = async (req, res) => {
   try {
-    const AllNotification = await NotificationService.GetAllNotification();
+    const AllMobileMoney = await MobileMoneyService.GetAllMobileMoney();
 
-    if (!AllNotification) {
-      return res.status(404).json({ message: "Notifications not found" });
+    if (!AllMobileMoney) {
+      return res.status(404).json({ message: "MobileMoneys not found" });
     } else {
-      return res.json({ AllNotification });
+      return res.json({ AllMobileMoney });
     }
   } catch (error) {
     console.error(error);
   }
 };
 
-async function updateNotification(req, res, next) {
+async function updateMobileMoney(req, res, next) {
   try {
-    const { notification, remarque, temps, isSent, isRead, serviceConcerne, destinataire } =
+    const { user, operateurNom, monnaie } =
       req.body;
-    const newNotification = new Notification(
-      notification,
-      remarque,
-      temps,
-      isSent,
-      isRead,
-      serviceConcerne,
-      destinataire
+    const newMobileMoney = new MobileMoney(
+      user,
+      operateurNom,
+      monnaie
     );
 
-    await NotificationService.updateNotification(newNotification);
+    await MobileMoneyService.updateMobileMoney(newMobileMoney);
 
-    res.status(200).json({ message: "Notification registered successfully" });
+    res.status(200).json({ message: "MobileMoney registered successfully" });
   } catch (error) {
     next(error); // Pass the error to the next middleware (error handler)
   }
 }
 
-async function deleteNotification(req, res, next) {
+async function deleteMobileMoney(req, res, next) {
   try {
     const id = req.body;
 
-    await NotificationService.deleteNotificationById(id);
+    await MobileMoneyService.deleteMobileMoneyById(id);
 
-    res.status(200).json({ message: "Notification registered successfully" });
+    res.status(200).json({ message: "MobileMoney registered successfully" });
   } catch (error) {
     next(error); // Pass the error to the next middleware (error handler)
   }
 }
 
 module.exports = {
-  createNotification,
-  GetNotificationById,
-  GetAllNotification,
-  updateNotification,
-  deleteNotification
+  createMobileMoney,
+  GetMobileMoneyById,
+  GetAllMobileMoney,
+  updateMobileMoney,
+  deleteMobileMoney
 };

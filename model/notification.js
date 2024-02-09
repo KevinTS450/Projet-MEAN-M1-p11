@@ -1,4 +1,4 @@
-class offreSpeciale {
+class notification {
     constructor(notification, remarque, temps, isSent, isRead, { idServ, nomServ, prixServ }, { idDes, nomDes }) {
         this.notification = notification;
         this.remarque = remarque;
@@ -9,4 +9,4 @@ class offreSpeciale {
         this.destinataire = { idUser: idDes, nom: nomDes }
     }
 }
-module.exports = offreSpeciale;
+module.exports = notification;

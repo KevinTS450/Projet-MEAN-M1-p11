@@ -1,4 +1,4 @@
-class preference {
+class paiement {
     constructor(montant, motif, temp, operateur, idRendezVous) {
         this.montant = montant;
         this.motif = motif;
@@ -7,4 +7,4 @@ class preference {
         this.idRendezVous = idRendezVous;
     }
 }
-module.exports = preference;
+module.exports = paiement;

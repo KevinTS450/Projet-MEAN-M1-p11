@@ -2,6 +2,24 @@ const express = require("express");
 const MobileMoneyService = require("../service/mobileMoney.service");
 const MobileMoney = require('../model/mobileMoney.model')
 
+async function createMobileMoney(req, res, next) {
+  try {
+    const { user, operateurNom, monnaie } =
+      req.body;
+    const newMobileMoney = new MobileMoney(
+      user,
+      operateurNom,
+      monnaie
+    );
+
+    await MobileMoneyService.createMobileMoney(newMobileMoney);
+
+    res.status(200).json({ message: "User registered successfully" });
+  } catch (error) {
+    next(error); // Pass the error to the next middleware (error handler)
+  }
+}
+
 const GetMobileMoneyById = async (req, res) => {
   try {
     // Assuming there is a MobileMoney model with findById method
@@ -66,6 +84,7 @@ async function deleteMobileMoney(req, res, next) {
 }
 
 module.exports = {
+  createMobileMoney,
   GetMobileMoneyById,
   GetAllMobileMoney,
   updateMobileMoney,

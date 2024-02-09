@@ -1,4 +1,4 @@
-const database = require("../../database.js");
+const database = require("../database");
 
 async function createMobileMoney(mobileMoney) {
   try {

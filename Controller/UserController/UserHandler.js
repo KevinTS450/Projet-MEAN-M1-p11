@@ -71,4 +71,6 @@ async function deleteUser(req, res, next) {
 module.exports = {
   GetUserByToken,
   GetAllUser,
+  updateUser,
+  deleteUser
 };

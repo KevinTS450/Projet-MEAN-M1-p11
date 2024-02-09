@@ -6,15 +6,7 @@ async function handleUserRegistration(req, res, next) {
   try {
     const { username, role, email, password, date_naissance, is_activate, age } =
       req.body;
-    const newUser = new User(
-      username,
-      role,
-      email,
-      password,
-      date_naissance,
-      is_activate,
-      age
-    );
+    const newUser = new User(username, email, password, role, date_naissance, is_activate,age);
 
     await Inscription.registerUser(newUser);
 

@@ -1,4 +1,6 @@
 const database = require("../database");
+const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Types;
 
 async function createMobileMoney(mobileMoney) {
   try {
@@ -19,11 +21,11 @@ async function createMobileMoney(mobileMoney) {
   }
 }
 
-async function getMobileMoneyById(id, db) {
+async function getMobileMoneyById(id) {
   try {
-    const collection = db.collection("mobileMoney");
+    const collection = database.client.db("MEAN").collection("mobileMoney");
 
-    const mobileMoney = await collection.findOne({ _id: ObjectId(id) });
+    const mobileMoney = await collection.findOne({ _id: new ObjectId(id) });
 
     return mobileMoney;
   } catch (error) {
@@ -57,9 +59,9 @@ async function updateMobileMoney(mobileMoney) {
     // Update object with changes (modify fields and values as needed)
     const updateMobileMoney = {
         $set: {
-            user: mobileMoney.user,
-            operateurNom: mobileMoney.operateurNom,
-            monnaie: mobileMoney.monnaie
+          user: mobileMoney.user,
+          operateurNom: mobileMoney.operateurNom,
+          monnaie: mobileMoney.monnaie
         }
     };
 
@@ -83,10 +85,10 @@ async function deleteMobileMoneyById(idMobileMoney) {
     const collection = database.client.db("MEAN").collection("mobileMoney");
 
     // Define the filter criteria
-    const filter = { id: idMobileMoney };
+    // const filter = { id: idMobileMoney };
 
     // Delete the mobileMoney document
-    const result = await collection.deleteOne(filter);
+    const result = await collection.deleteOne({ _id: new ObjectId(idMobileMoney) });
 
     if (result.deletedCount === 0) {
       console.warn("No mobileMoney found with the provided id:", idMobileMoney);
@@ -101,9 +103,9 @@ async function deleteMobileMoneyById(idMobileMoney) {
 
 
 module.exports = {
-    createMobileMoney,
-    getMobileMoneyById,
-    GetAllMobileMoney,
-    updateMobileMoney,
-    deleteMobileMoneyById
+  createMobileMoney,
+  getMobileMoneyById,
+  GetAllMobileMoney,
+  updateMobileMoney,
+  deleteMobileMoneyById
 };

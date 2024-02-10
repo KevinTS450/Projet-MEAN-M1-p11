@@ -23,9 +23,9 @@ async function createMobileMoney(req, res, next) {
 const GetMobileMoneyById = async (req, res) => {
   try {
     // Assuming there is a MobileMoney model with findById method
-    console.log("Decoded MobileMoney ID in Controller:", req.mobileMoney.id);
+    console.log("Decoded MobileMoney ID in Controller:", req.params.id);
 
-    const mobileMoney = await MobileMoneyService.getMobileMoneyById(req.mobileMoney.id);
+    const mobileMoney = await MobileMoneyService.getMobileMoneyById(req.params.id);
     console.log("MobileMoney Details:", mobileMoney);
 
     if (!mobileMoney) {
@@ -58,7 +58,7 @@ async function updateMobileMoney(req, res, next) {
     const { user, operateurNom, monnaie } =
       req.body;
     const newMobileMoney = new MobileMoney(
-      user,
+      { idUs: user.idUser, nomUs: user.nom },
       operateurNom,
       monnaie
     );
@@ -73,7 +73,7 @@ async function updateMobileMoney(req, res, next) {
 
 async function deleteMobileMoney(req, res, next) {
   try {
-    const id = req.body;
+    const id = req.params.id;
 
     await MobileMoneyService.deleteMobileMoneyById(id);
 

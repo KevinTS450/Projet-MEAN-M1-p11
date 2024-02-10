@@ -1,4 +1,6 @@
 const database = require("../../database.js");
+const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Types;
 
 async function createNotification(notification) {
   try {
@@ -27,7 +29,7 @@ async function getNotificationById(id, db) {
   try {
     const collection = db.collection("notification");
 
-    const notification = await collection.findOne({ _id: ObjectId(id) });
+    const notification = await collection.findOne({ _id: new ObjectId(id) });
 
     return notification;
   } catch (error) {

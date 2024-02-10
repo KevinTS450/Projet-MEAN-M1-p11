@@ -18,5 +18,8 @@ router.put("/updateUser/:id", HandlerUser.updateUser)
 
 router.post("/mobileMoney/create", mobileMoneyController.createMobileMoney)
 router.get("/mobileMoney/findAll", mobileMoneyController.GetAllMobileMoney)
+router.get("/mobileMoney/findById/:id", mobileMoneyController.GetMobileMoneyById)
+router.put("/mobileMoney/updateById/:id", mobileMoneyController.updateMobileMoney)
+router.delete("/mobileMoney/deleteById/:id", mobileMoneyController.deleteMobileMoney)
 
 module.exports = router;

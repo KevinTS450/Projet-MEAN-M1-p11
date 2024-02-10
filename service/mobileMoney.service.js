@@ -7,13 +7,9 @@ async function createMobileMoney(mobileMoney) {
 
     // Insert the mobileMoney into the collection
     await collection.insertOne({
-        mobileMoney: mobileMoney.mobileMoney,
-        remarque: mobileMoney.remarque,
-        temps: mobileMoney.temps,
-        isSent: mobileMoney.isSent,
-        isRead: mobileMoney.isRead,
-        serviceConcerne: mobileMoney.serviceConcerne,
-        destinataire: mobileMoney.destinataire
+        user: mobileMoney.user,
+        operateurNom: mobileMoney.operateurNom,
+        monnaie: mobileMoney.monnaie
     });
 
     console.log("mobileMoney registered successfully");
@@ -61,13 +57,9 @@ async function updateMobileMoney(mobileMoney) {
     // Update object with changes (modify fields and values as needed)
     const updateMobileMoney = {
         $set: {
-            mobileMoney: mobileMoney.mobileMoney,
-            remarque: mobileMoney.remarque,
-            temps: mobileMoney.temps,
-            isSent: mobileMoney.isSent,
-            isRead: mobileMoney.isRead,
-            serviceConcerne: mobileMoney.serviceConcerne,
-            destinataire: mobileMoney.destinataire
+            user: mobileMoney.user,
+            operateurNom: mobileMoney.operateurNom,
+            monnaie: mobileMoney.monnaie
         }
     };
 

@@ -1,5 +1,6 @@
 const express = require("express");
 const UserService = require("../../service/User/UserService.js");
+const User = require("../../model/Users/user.js");
 
 const GetUserByToken = async (req, res) => {
   try {
@@ -36,6 +37,7 @@ const GetAllUser = async (req, res) => {
 
 async function updateUser(req, res, next) {
   try {
+    const idUser = req.params.id;
     const { username, role, email, password, date_naissance, is_activate, age } =
       req.body;
     const newUser = new User(
@@ -47,12 +49,12 @@ async function updateUser(req, res, next) {
       is_activate,
       age
     );
+    console.log(req.params);
+    await UserService.updateUser(idUser,newUser);
 
-    await UserService.updateUser(newUser);
-
-    res.status(200).json({ message: "User registered successfully" });
+    res.status(200).json({ message: "User updated successfully" });
   } catch (error) {
-    next(error); // Pass the error to the next middleware (error handler)
+    next(error); 
   }
 }
 

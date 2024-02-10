@@ -12,9 +12,11 @@ router.post("/inscription", handlerInscription);
 router.get("/get-user", authenticateToken, HandlerUser.GetUserByToken);
 router.post("/login", handlerLogin);
 router.get("/AllUser", HandlerUser.GetAllUser);
+router.put("/updateUser/:id", HandlerUser.updateUser)
 
 //      MOBILEMONEY
 
 router.post("/mobileMoney/create", mobileMoneyController.createMobileMoney)
+router.get("/mobileMoney/findAll", mobileMoneyController.GetAllMobileMoney)
 
 module.exports = router;

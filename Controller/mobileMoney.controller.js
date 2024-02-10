@@ -7,14 +7,14 @@ async function createMobileMoney(req, res, next) {
     const { user, operateurNom, monnaie } =
       req.body;
     const newMobileMoney = new MobileMoney(
-      user,
+      { idUs: user.idUser, nomUs: user.nom },
       operateurNom,
       monnaie
     );
 
     await MobileMoneyService.createMobileMoney(newMobileMoney);
 
-    res.status(200).json({ message: "User registered successfully" });
+    res.status(200).json({ message: "MobileMoney registered successfully" });
   } catch (error) {
     next(error); // Pass the error to the next middleware (error handler)
   }

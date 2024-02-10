@@ -30,12 +30,12 @@ async function GetAllUsers() {
   }
 }
 
-async function updateUser(user) {
+async function updateUser(idUser,user) {
   try {
     // Specify the collection
     const collection = database.client.db("MEAN").collection("users");
 
-    const filter = { id: user.id }; // Use other relevant fields from user if needed
+    const filter = { id: idUser }; // Use other relevant fields from user if needed
 
     // Update object with changes (modify fields and values as needed)
     const updateDoc = {
@@ -49,7 +49,7 @@ async function updateUser(user) {
         is_activate: user.is_activate
       }
     };
-
+    console.log(updateDoc);
     // Update the document
     const result = await collection.updateOne(filter, updateDoc);
 
